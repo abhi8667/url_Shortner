@@ -1,17 +1,31 @@
 # Smart URL Shortener with Analytics
 
-A full-stack hackathon starter for **CodeVerse**.
+A full-stack URL shortener that includes authentication, click tracking, and a clean dashboard for managing links. The project ships with a React + Vite frontend and a Node.js + Express backend backed by MongoDB.
+
+## Live Demo (Vercel)
+
+- App: https://url-shortner-roan-seven.vercel.app/
+- Login: https://url-shortner-1jolo9hpa-abhi8667s-projects.vercel.app/login
+
+## Features
+
+- 🔗 Shorten long URLs with unique short codes
+- 🧭 Redirect using `/s/:shortCode` and track clicks automatically
+- 📊 Analytics dashboard with totals and per-link stats
+- 🔐 JWT-based authentication (register, login, protected routes)
+- 🧹 URL validation and safe input handling
 
 ## Tech Stack
 
-- Frontend: React + Vite + Tailwind CSS
-- Backend: Node.js + Express
-- Database: MongoDB + Mongoose
+- **Frontend:** React, Vite, Tailwind CSS, React Router
+- **Backend:** Node.js, Express
+- **Database:** MongoDB + Mongoose
+- **Auth & Utils:** JWT, bcryptjs, nanoid, ua-parser-js
 
 ## Project Structure
 
 ```text
-bms ieee web dev/
+url_Shortner/
   backend/
     src/
       config/
@@ -37,18 +51,18 @@ bms ieee web dev/
   README.md
 ```
 
-## Core Features Scaffolded
+## Getting Started
 
-1. URL shortening with URL validation and unique short code generation.
-2. Redirection endpoint using short code.
-3. Analytics with click tracking per short URL.
-4. Dashboard UI for creating links and viewing all links with stats.
+### Prerequisites
 
-## Environment Variables
+- Node.js 18+ and npm
+- MongoDB (local or hosted instance)
 
-### Backend
+### Environment Variables
 
-Copy `backend/.env.example` to `backend/.env` and fill values if needed.
+#### Backend
+
+Copy `backend/.env.example` to `backend/.env` and fill values.
 
 ```env
 PORT=5000
@@ -57,7 +71,7 @@ SERVER_BASE_URL=http://localhost:5000
 FRONTEND_URL=http://localhost:5173
 ```
 
-### Frontend
+#### Frontend
 
 Copy `frontend/.env.example` to `frontend/.env`.
 
@@ -65,11 +79,11 @@ Copy `frontend/.env.example` to `frontend/.env`.
 VITE_API_BASE_URL=http://localhost:5000
 ```
 
-## Install and Run Locally
+### Install & Run Locally
 
 Open two terminals from the project root.
 
-### 1) Backend
+#### 1) Backend
 
 ```bash
 cd backend
@@ -79,7 +93,7 @@ npm run dev
 
 Backend runs at `http://localhost:5000`.
 
-### 2) Frontend
+#### 2) Frontend
 
 ```bash
 cd frontend
@@ -89,14 +103,16 @@ npm run dev
 
 Frontend runs at `http://localhost:5173`.
 
-## API Endpoints
+## API Overview
 
-- `POST /api/urls/shorten` - Create or return a short URL for a long URL.
-- `GET /api/urls` - Fetch all created URLs and analytics.
-- `GET /s/:shortCode` - Redirect to original URL and increment click count.
-- `GET /health` - Health check.
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| POST | `/api/urls/shorten` | Create or return a short URL for a long URL |
+| GET | `/api/urls` | Fetch all created URLs and analytics |
+| GET | `/s/:shortCode` | Redirect to original URL and increment click count |
+| GET | `/health` | Health check |
 
-## Example Create Request
+### Example Request
 
 ```http
 POST /api/urls/shorten
@@ -107,7 +123,11 @@ Content-Type: application/json
 }
 ```
 
-## Notes
+## Deployment Notes
 
-- This setup currently uses **MongoDB**.
-- If you want, I can now scaffold an alternative **PostgreSQL + Prisma** backend variant in parallel so you can choose one stack before final submission.
+- The frontend can be deployed to Vercel.
+- Ensure the backend is reachable from the frontend `VITE_API_BASE_URL`.
+
+## Contributing
+
+Pull requests are welcome. If you plan major changes, please open an issue first to discuss scope.
