@@ -10,7 +10,6 @@ const { protect } = require("../middleware/authMiddleware");
 const router = express.Router();
 
 router.post("/shorten", (req, res, next) => {
-  // Make auth optional for shortening but link if possible
   if (req.headers.authorization) {
     return protect(req, res, next);
   }

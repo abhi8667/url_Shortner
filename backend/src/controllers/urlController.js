@@ -45,7 +45,6 @@ const createShortUrl = async (req, res, next) => {
       shortCode = customCode;
       isUnique = true;
     } else {
-      // Retry a few times in the unlikely event of a collision.
       for (let attempt = 0; attempt < 5; attempt += 1) {
         const candidate = generateShortCode();
         const found = await Url.findOne({ shortCode: candidate });
@@ -122,7 +121,6 @@ const redirectToOriginal = async (req, res, next) => {
       return res.status(410).json({ message: "Short URL has expired" });
     }
 
-    // Log click metadata
     const ua = new UAParser(req.headers["user-agent"]).getResult();
     await Click.create({
       urlId: url._id,
@@ -156,7 +154,6 @@ const getAnalytics = async (req, res, next) => {
 
     const clicks = await Click.find({ urlId: id }).sort({ timestamp: -1 });
 
-    // Simple aggregation for charts
     const stats = {
       totalClicks: clicks.length,
       byBrowser: {},
@@ -165,15 +162,12 @@ const getAnalytics = async (req, res, next) => {
     };
 
     clicks.forEach((c) => {
-      // By Browser
       const browser = c.browser || "Unknown";
       stats.byBrowser[browser] = (stats.byBrowser[browser] || 0) + 1;
 
-      // By OS
       const os = c.os || "Unknown";
       stats.byOS[os] = (stats.byOS[os] || 0) + 1;
 
-      // By Date (Last 7 days)
       const date = c.timestamp.toISOString().split("T")[0];
       stats.byDate[date] = (stats.byDate[date] || 0) + 1;
     });
