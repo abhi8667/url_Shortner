@@ -66,7 +66,6 @@ const AnalyticsPage = () => {
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Clicks Over Time */}
           <div className="bg-gray-800 p-6 rounded-2xl shadow-xl">
             <h2 className="text-xl font-bold mb-6">Clicks Over Time</h2>
             <div className="h-64">
@@ -86,7 +85,6 @@ const AnalyticsPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
-            {/* Browser Distribution */}
             <div className="bg-gray-800 p-6 rounded-2xl shadow-xl">
               <h2 className="text-xl font-bold mb-6">Browsers</h2>
               <div className="h-64">
@@ -113,7 +111,6 @@ const AnalyticsPage = () => {
               </div>
             </div>
 
-            {/* OS Distribution */}
             <div className="bg-gray-800 p-6 rounded-2xl shadow-xl">
               <h2 className="text-xl font-bold mb-6">Operating Systems</h2>
               <div className="h-64">
