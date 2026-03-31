@@ -10,6 +10,8 @@ const createShortUrl = async (req, res, next) => {
   try {
     const { originalUrl, customCode, expiresAt } = req.body;
     const userId = req.user ? req.user.id : null;
+    let shortCode;
+    let isUnique = false;
 
     if (!originalUrl) {
       return res.status(400).json({ message: "originalUrl is required" });
